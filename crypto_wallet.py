@@ -12,6 +12,7 @@ load_dotenv()
 from bip44 import Wallet
 from web3 import Account
 from web3 import middleware
+from web3.auto.infura.kovan import w3
 from web3.gas_strategies.time_based import medium_gas_price_strategy
 
 ################################################################################
@@ -33,7 +34,7 @@ def generate_account():
 
     return account
 
-def get_balance(w3, address):
+def get_balance(address):
     """Using an Ethereum account address access the balance of Ether"""
     # Get balance of address in Wei
     wei_balance = w3.eth.get_balance(address)
@@ -45,7 +46,7 @@ def get_balance(w3, address):
     return ether
 
 
-def send_transaction(w3, account, to, wage):
+def send_transaction(account, to, wage):
     """Send an authorized transaction to the Ganache blockchain."""
     # Set gas price strategy
     w3.eth.setGasPriceStrategy(medium_gas_price_strategy)
