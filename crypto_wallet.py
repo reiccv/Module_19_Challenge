@@ -8,14 +8,14 @@
 import os
 import requests
 from dotenv import load_dotenv
-load_dotenv("SAMPLE.env")
+load_dotenv()
 from bip44 import Wallet
 from web3 import Account
 from web3 import middleware
 from web3.gas_strategies.time_based import medium_gas_price_strategy
 from web3 import Web3
 w3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/9b8a28fefe5c4368bf7384e8ed5702b5'))
-
+w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
 
 ################################################################################
 # Wallet functionality
@@ -65,7 +65,7 @@ def send_transaction(account, to, wage):
         "from": account.address,
         "value": value,
         "gas": gasEstimate,
-        "gasPrice": 0,
+        "gasPrice": 943608917,
         "nonce": w3.eth.getTransactionCount(account.address)
     }
 
